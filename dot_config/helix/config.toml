@@ -1,0 +1,87 @@
+# theme = "onedark"
+# theme = "catppuccin_macchiato"
+theme = "mytheme"
+
+[editor]
+line-number = "relative"
+end-of-line-diagnostics = "hint"
+color-modes = true
+cursorline = true
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "error"
+
+[editor.statusline]
+mode.normal = "Normal"
+mode.insert = "Insert"
+mode.select = "Select"
+left = ["mode", "spinner", "version-control", "spacer"]
+center = [
+  "file-base-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+right = [
+  "diagnostics",
+  "selections",
+  "register",
+  "position",
+  "total-line-numbers",
+  "file-encoding",
+  "file-type",
+]
+
+
+[keys.normal]
+Cmd-s = ":w!"
+C-r = ":config-open"
+C-S-r = ":config-reload"
+"S-ret" = ["open_above", "normal_mode"]
+"ret" = ["open_below", "normal_mode"]
+S-x = "extend_line_above"
+S-up = [ # scroll selections up one line
+  "ensure_selections_forward",
+  "extend_to_line_bounds",
+  "extend_char_right",
+  "extend_char_left",
+  "delete_selection",
+  "move_line_up",
+  "add_newline_above",
+  "move_line_up",
+  "replace_with_yanked",
+]
+S-down = [ # scroll selections down one line
+  "ensure_selections_forward",
+  "extend_to_line_bounds",
+  "extend_char_right",
+  "extend_char_left",
+  "delete_selection",
+  "add_newline_below",
+  "move_line_down",
+  "replace_with_yanked",
+]
+C-g = [
+  ":write-all",
+  ":new",
+  ":insert-output lazygit",
+  ":buffer-close!",
+  ":redraw",
+  ":reload-all",
+]
+
+[keys.insert]
+Cmd-s = ["normal_mode", ":w!"]
+"A-ret" = ["normal_mode", "open_below"]
+C-space = "completion"
+
+[keys.select.ret]
+s = ":sh tmux popup -xC -yC -w90% -h90% -E scooter"

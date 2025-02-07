@@ -1,0 +1,45 @@
+[[language]]
+name = "go"
+auto-format = true
+language-servers = ["gopls", "golangci-lint-lsp"]
+formatter = { command = "goimports" }
+
+[[language]]
+name = "html"
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+
+[[language]]
+name = "sql"
+# language-servers = [ "sql-language-server" ]
+formatter = { command = "prettier", args = [
+  "--plugin",
+  "/Users/robertball/.nvm/versions/node/v23.3.0/lib/node_modules/prettier-plugin-sql-cst/dist/index.js",
+  "--parser",
+  "postgresql",
+  "--sqlAcceptUnsupportedGrammar",
+  "--sql-param-types",
+  "$nr",
+  "--sql-param-types",
+  "$name",
+  "--sql-param-types",
+  "?",
+] }
+auto-format = true
+
+[language-server.sql-language-server]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
