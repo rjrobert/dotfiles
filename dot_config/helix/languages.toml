@@ -1,13 +1,12 @@
 [[language]]
-name = "go"
+name = "xml"
+formatter = { command = "xmllint", args = ["--format", "-"] }
 auto-format = true
-language-servers = ["gopls", "golangci-lint-lsp"]
-formatter = { command = "goimports" }
 
-[[language]]
-name = "html"
-formatter = { command = 'prettier', args = ["--parser", "html"] }
-auto-format = true
+
+################################
+## Configuration for yaml-lsp ##
+################################
 
 [language-server.yaml-language-server.config.yaml]
 format = { enable = true }
@@ -16,6 +15,98 @@ validation = true
 [language-server.yaml-language-server.config.yaml.schemas]
 "https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
 "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+
+################################
+## Configuration for sql-lsp  ##
+################################
+
+[language-server.sql-language-server]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+################################
+### Configuration for lsp-ai ###
+################################
+
+[language-server.lsp-ai]
+command = "lsp-ai"
+args = [
+  "--config",
+  "/Users/robertball/.config/helix/lsp-ai.json",
+  "--use-seperate-log-file",
+]
+
+#################################
+## Configuration for languages ##
+#################################
+
+[[language]]
+name = "fish"
+formatter = { command = "fish_indent" }
+auto-format = true
+
+[[language]]
+name = "go"
+auto-format = true
+language-servers = ["gopls", "golangci-lint-lsp", "lsp-ai"]
+formatter = { command = "goimports" }
+
+[[language]]
+name = "html"
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "ini"
+scope = "source.ini"
+file-types = [
+  "ini",
+  # Systemd unit files
+  "service",
+  "automount",
+  "device",
+  "mount",
+  "path",
+  "service",
+  "slice",
+  "socket",
+  "swap",
+  "target",
+  "timer",
+  # Podman quadlets
+  "container",
+  "volume",
+  "kube",
+  "network",
+  { glob = ".editorconfig" },
+  { glob = ".npmrc" },
+  { glob = "hgrc" },
+  { glob = "npmrc" },
+  { glob = "rclone.conf" },
+  "properties",
+  "cfg",
+  "directory",
+
+  "conf",
+]
+injection-regex = "ini"
+comment-token = "#"
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "json"
+formatter = { command = 'prettier', args = ["--parser", "json"] }
+auto-format = true
+
+[[language]]
+name = "markdown"
+language-servers = ["lsp-ai"]
+soft-wrap = { enable = true }
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
 
 [[language]]
 name = "sql"
@@ -33,13 +124,4 @@ formatter = { command = "prettier", args = [
   "--sql-param-types",
   "?",
 ] }
-auto-format = true
-
-[language-server.sql-language-server]
-command = "sql-language-server"
-args = ["up", "--method", "stdio"]
-
-[[language]]
-name = "toml"
-formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true

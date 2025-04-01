@@ -1,5 +1,3 @@
-# theme = "onedark"
-# theme = "catppuccin_macchiato"
 theme = "mytheme"
 
 [editor]
@@ -8,6 +6,7 @@ end-of-line-diagnostics = "hint"
 color-modes = true
 cursorline = true
 bufferline = "multiple"
+completion-timeout = 15
 
 [editor.cursor-shape]
 insert = "bar"
@@ -17,7 +16,7 @@ select = "underline"
 hidden = false
 
 [editor.inline-diagnostics]
-cursor-line = "error"
+cursor-line = "warning"
 other-lines = "error"
 
 [editor.statusline]
@@ -32,6 +31,7 @@ center = [
 ]
 right = [
   "diagnostics",
+  "primary-selection-length",
   "selections",
   "register",
   "position",
@@ -40,11 +40,13 @@ right = [
   "file-type",
 ]
 
-
 [keys.normal]
 Cmd-s = ":w!"
 C-r = ":config-open"
 C-S-r = ":config-reload"
+C-l = ":o ~/.config/helix/languages.toml"
+C-A-l = ":o ~/.config/helix/lsp-ai.json"
+A-l = ":o ~/Library/Caches/lsp-ai/lsp-ai.log"
 "S-ret" = ["open_above", "normal_mode"]
 "ret" = ["open_below", "normal_mode"]
 S-x = "extend_line_above"
@@ -69,19 +71,34 @@ S-down = [ # scroll selections down one line
   "move_line_down",
   "replace_with_yanked",
 ]
+# C-g = ":sh tmux popup -d \"#{pane_current_path}\" -xC -yC -w80% -h80% -E lazygit"
 C-g = [
   ":write-all",
-  ":new",
-  ":insert-output lazygit",
-  ":buffer-close!",
-  ":redraw",
-  ":reload-all",
+  ":sh zellij run -c -f --width 80%% --height 80%% -x 10%% -y 10%% --name lazygit -- lazygit",
 ]
+# C-g = [
+#   ":write-all",
+#   ":new",
+#   ":insert-output lazygit",
+#   ":buffer-close!",
+#   ":redraw",
+#   ":reload-all",
+# ]
+C-n = ":buffer-next"
+C-p = ":buffer-previous"
+C-q = ":bc"
 
 [keys.insert]
 Cmd-s = ["normal_mode", ":w!"]
 "A-ret" = ["normal_mode", "open_below"]
 C-space = "completion"
 
-[keys.select.ret]
-s = ":sh tmux popup -xC -yC -w90% -h90% -E scooter"
+[keys.normal.space.space]
+b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}"
+s = ":sh zellij run -c -f --width 80%% --height 80%% -x 10%% -y 10%% --name scooter -- scooter"
+
+[keys.normal.space]
+f = "file_explorer_in_current_directory"
+F = "file_explorer"
+e = "file_explorer_in_current_buffer_directory"
+E = "no_op"
