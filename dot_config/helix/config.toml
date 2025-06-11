@@ -5,6 +5,7 @@ line-number = "relative"
 end-of-line-diagnostics = "hint"
 color-modes = true
 cursorline = true
+true-color = true
 bufferline = "multiple"
 completion-timeout = 15
 
@@ -71,22 +72,14 @@ S-down = [ # scroll selections down one line
   "move_line_down",
   "replace_with_yanked",
 ]
-# C-g = ":sh tmux popup -d \"#{pane_current_path}\" -xC -yC -w80% -h80% -E lazygit"
 C-g = [
   ":write-all",
   ":sh zellij run -c -f --width 80%% --height 80%% -x 10%% -y 10%% --name lazygit -- lazygit",
 ]
-# C-g = [
-#   ":write-all",
-#   ":new",
-#   ":insert-output lazygit",
-#   ":buffer-close!",
-#   ":redraw",
-#   ":reload-all",
-# ]
 C-n = ":buffer-next"
 C-p = ":buffer-previous"
 C-q = ":bc"
+C-y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh open %{buffer_name}"
 
 [keys.insert]
 Cmd-s = ["normal_mode", ":w!"]
@@ -98,7 +91,6 @@ b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}"
 s = ":sh zellij run -c -f --width 80%% --height 80%% -x 10%% -y 10%% --name scooter -- scooter"
 
 [keys.normal.space]
+e = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh open %{buffer_name}"
 f = "file_explorer_in_current_directory"
-F = "file_explorer"
-e = "file_explorer_in_current_buffer_directory"
-E = "no_op"
+F = "file_explorer_in_current_buffer_directory"

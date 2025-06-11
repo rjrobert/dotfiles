@@ -1,8 +1,19 @@
+
+###############################
+## Configuration for lua-lsp ##
+###############################
+[[language]]
+name = "lua"
+formatter = { command = "stylua", args = ["- "] }
+auto-format = true
+
+###############################
+## Configuration for xml-lsp ##
+###############################
 [[language]]
 name = "xml"
 formatter = { command = "xmllint", args = ["--format", "-"] }
 auto-format = true
-
 
 ################################
 ## Configuration for yaml-lsp ##
@@ -48,7 +59,8 @@ auto-format = true
 [[language]]
 name = "go"
 auto-format = true
-language-servers = ["gopls", "golangci-lint-lsp", "lsp-ai"]
+# language-servers = ["gopls", "golangci-lint-lsp", "lsp-ai"]
+language-servers = ["gopls", "golangci-lint-lsp"]
 formatter = { command = "goimports" }
 
 [[language]]
@@ -113,10 +125,14 @@ name = "sql"
 # language-servers = [ "sql-language-server" ]
 formatter = { command = "prettier", args = [
   "--plugin",
+{{ if eq .chezmoi.os "darwin" }}
   "/Users/robertball/.nvm/versions/node/v23.3.0/lib/node_modules/prettier-plugin-sql-cst/dist/index.js",
+{{ else if eq .chezmoi.os "linux" }}
+  "/usr/local/lib/node_modules/prettier-plugin-sql-cst/dist/index.js",
+{{end}}
   "--parser",
   "postgresql",
-  "--sqlAcceptUnsupportedGrammar",
+  "--sql-accept-unsupported-grammar",
   "--sql-param-types",
   "$nr",
   "--sql-param-types",
@@ -124,4 +140,13 @@ formatter = { command = "prettier", args = [
   "--sql-param-types",
   "?",
 ] }
+auto-format = true
+
+[[language]]
+name = "yaml"
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[[language]]
+name = "haskell"
+formatter = { command = "ormolu", args = ["--stdin-input-file", "$(pwd)"] }
 auto-format = true
