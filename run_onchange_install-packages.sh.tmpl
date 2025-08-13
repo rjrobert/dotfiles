@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+sudo add-apt-repository ppa:fish-shell/release-4
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
+
+{{ range .chezmoi.packages.linux -}}
+sudo apt install -y {{ . | quote }}
+{{ end -}}
+
+{{ end -}}
