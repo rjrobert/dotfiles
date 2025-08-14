@@ -1,6 +1,6 @@
 packages:
   linux:
-    - 'fish-shell'
+    - 'fish'
     - 'neovim'
     - 'lsd'
     - '7zip'
@@ -11,3 +11,7 @@ packages:
     - 'fzf'
     - 'zoxide'
     - 'imagemagick'
+    - 'tmux'
+    - 'git'
+    - 'nodejs'
+    - 'npm'
