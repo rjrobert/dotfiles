@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.stateVersion = "24.05"; # Use the latest stable version of home-manager
@@ -6,11 +6,8 @@
   home.homeDirectory = "/home/robert";
 
   # Base packages
-  home.packages = with pkgs; [
+  home.packages = lib.unique (with pkgs; [
     btop
-    git
-    neovim
-    fish
     lsd
     jujutsu
     tmux
@@ -18,7 +15,7 @@
     (pkgs.ffmpeg.override {
       withNvenc = true;
     })
-  ];
+  ]);
 
   home.file.".config/nvim".source = ./config/nvim;
   home.file.".config/fish".source = ./config/fish;
