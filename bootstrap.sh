@@ -4,7 +4,7 @@ set -euo pipefail
 # 1. Install Nix if not already installed
 if ! command -v nix &>/dev/null; then
   echo "Installing Nix..."
-  curl -L https://install.determinate.systems/nix | sh
+  curl -L https://install.determinate.systems/nix | sh -s -- install --determinate
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 

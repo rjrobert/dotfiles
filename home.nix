@@ -12,7 +12,6 @@
     fish
     lsd
     jujutsu
-    fish
     tmux
 
     (pkgs.ffmpeg.override {
