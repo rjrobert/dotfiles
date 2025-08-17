@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  home.stateVersion = "24.05"; # Use the latest stable version of home-manager
   home.username = "robert";
   home.homeDirectory = "/home/robert";
 
