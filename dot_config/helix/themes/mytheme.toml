@@ -1,4 +1,0 @@
-inherits = "catppuccin_macchiato"
-
-"ui.bufferline.active" = { fg = "base", bg = "rosewater", underline = { color = "base", style = "line" } }
-"ui.linenr.selected" = { fg = "rosewater", modifiers = ["bold"] }
