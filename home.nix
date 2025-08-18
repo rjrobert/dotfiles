@@ -47,6 +47,7 @@
     if [ ! -f "$HOME/.local/share/nvim/lazyvim.json" ]; then
       mkdir -p "$HOME/.local/share/nvim"
       cp ${./config/nvim/lazyvim.json} "$HOME/.local/share/nvim/lazyvim.json"
+      chmod 644 "$HOME/.local/share/nvim/lazyvim.json"
     fi
   '';
 }
