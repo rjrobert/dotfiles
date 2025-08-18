@@ -19,9 +19,16 @@
     zoxide
     starship
     lazygit
+    ripgrep
     go
     golangci-lint
     golangci-lint-langserver
+    rustup
+    poppler
+    fd
+    jq
+    resvg
+    imagemagick
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
@@ -40,6 +47,10 @@
 
   programs.fish.enable = true;
   programs.neovim.enable = true;
+
+  imports = [
+    ./modules/yazi.nix
+  ];
 
   programs.home-manager.enable = true;
 
