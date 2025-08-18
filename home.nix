@@ -43,6 +43,18 @@
     enable = true;
     userName = "Robert Ball";
     userEmail = "jhrobert@pm.me";
+    delta = {
+      enable = true;
+      options = {
+        hyperlinks = true;
+        features = "decorations interactive";
+
+        interactive = {
+          keep-plus-minus-markers = false;
+        }
+      }
+    }
+
   };
 
   programs.fish.enable = true;
