@@ -29,7 +29,6 @@
   ]);
 
   home.file.".config/nvim".source = ./config/nvim;
-  home.file.".local/share/nvim/lazyvim.json".source = ./config/nvim/lazyvim.json;
   home.file.".config/fish".source = ./config/fish;
   home.file.".config/tmux".source = ./config/tmux;
 
@@ -43,4 +42,11 @@
   programs.neovim.enable = true;
 
   programs.home-manager.enable = true;
+
+  home.activation.seedLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ ! -f "$HOME/.local/share/nvim/lazyvim.json" ]; then
+      mkdir -p "$HOME/.local/share/nvim"
+      cp ${./config/nvim/lazyvim.json} "$HOME/.local/share/nvim/lazyvim.json"
+    fi
+  '';
 }
