@@ -19,6 +19,9 @@
     zoxide
     starship
     lazygit
+    go
+    golangci-lint
+    golangci-lint-langserver
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
