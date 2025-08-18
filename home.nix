@@ -18,6 +18,7 @@
     fzf
     zoxide
     starship
+    lazygit
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
