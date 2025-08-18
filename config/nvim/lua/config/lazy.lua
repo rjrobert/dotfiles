@@ -14,6 +14,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.lazyvim_config = {
+  json = vim.fn.stdpath("data") .. "/lazyvim.json",
+}
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins

@@ -29,6 +29,7 @@
   ]);
 
   home.file.".config/nvim".source = ./config/nvim;
+  home.file.".local/share/nvim/lazyvim.json".source = ./config/nvim/lazyvim.json;
   home.file.".config/fish".source = ./config/fish;
   home.file.".config/tmux".source = ./config/tmux;
 
