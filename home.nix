@@ -51,9 +51,9 @@
 
         interactive = {
           keep-plus-minus-markers = false;
-        }
-      }
-    }
+        };
+      };
+    };
 
   };
 
