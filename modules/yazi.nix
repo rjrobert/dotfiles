@@ -3,6 +3,7 @@
 		owner = "yazi-rs";
 		repo = "plugins";
 		rev = "e95c7b384e7b0a9793fe1471f0f8f7810ef2a7ed";
+    hash = "sha256-TUS+yXxBOt6tL/zz10k4ezot8IgVg0/2BbS8wPs9KcE='";
 	};
 in {
 	programs.yazi = {
@@ -28,6 +29,7 @@ in {
 				owner = "Rolv-Apneseth";
 				repo = "starship.yazi";
 				rev = "a63550b2f91f0553cc545fd8081a03810bc41bc0";
+        hash = "sha256-PYeR6fiWDbUMpJbTFSkM57FzmCbsB4W4IXXe25wLncg=";
 			};
 		};
 
