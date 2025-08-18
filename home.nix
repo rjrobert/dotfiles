@@ -11,6 +11,9 @@
     lsd
     jujutsu
     tmux
+    fzf
+    zoxide
+    starship
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
