@@ -27,11 +27,10 @@
     open = false;
   };
 
-
-  services.plex = {
-    enable = true;
-    openFirewall = true;
-  };
+  # services.plex = {
+  #   enable = true;
+  #   openFirewall = true;
+  # };
 
   fileSystems."/truenas" = {
     device = "192.168.1.201:/mnt/tank";
@@ -69,6 +68,8 @@
     unzip
     sqlfluff
   ];
+
+  programs.fish.enable = true;
 
   users.users.robert = {
     isNormalUser = true;
