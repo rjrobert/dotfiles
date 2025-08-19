@@ -30,6 +30,8 @@
     resvg
     imagemagick
     nodejs_24
+    unzip
+    uv
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
