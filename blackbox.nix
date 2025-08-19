@@ -1,9 +1,20 @@
 { config, pkgs, ... }:
 {
-  imports = [];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-  networking.hostName = "blackbox-test";
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking = {
+    hostName = "blackbox-test";
+    networkmanager.enable = true;
+  };
+
   time.timeZone = "America/Los_Angeles";
+
+  nixpkgs.config.allowUnfree = true;
 
   services.openssh.enable = true;
 
@@ -13,6 +24,7 @@
     modesetting.enable = true;
     powerManagement.enable = true;
     nvidiaPersistenced = true;
+    open = false;
   };
 
 
@@ -66,6 +78,6 @@
 
   security.sudo.enable = true;
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
 
