@@ -23,7 +23,7 @@
 
   fileSystems."/truenas" = {
     device = "192.168.1.201:/mnt/tank";
-    fstype = "nfs";
+    fsType = "nfs";
     options = ["x-systemd.automount" "noauto" "_netdev" "nofail" ];
   };
 
