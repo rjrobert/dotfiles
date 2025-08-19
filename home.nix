@@ -29,6 +29,7 @@
     jq
     resvg
     imagemagick
+    nodejs_24
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
