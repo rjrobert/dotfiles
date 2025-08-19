@@ -10,11 +10,18 @@
   outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux"; # Ubuntu server
-      pkgs = import nixpkgs { inherit system; };
     in {
-      homeConfigurations.robert = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
+      nixosConfigurations.blackbox = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./blackbox.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.robert = import ./home.nix;
+          }
+        ];
       };
     };
 }

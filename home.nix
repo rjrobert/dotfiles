@@ -4,40 +4,10 @@
   home.stateVersion = "24.05"; # Use the latest stable version of home-manager
   home.username = "robert";
   home.homeDirectory = "/home/robert";
-  home.sessionPath = [
-    "$HOME/.nix-profile/bin"
-    "$HOME/.local/state/nix/profile/bin"
-    "/nix/var/nix/profiles/default/bin"
-  ];
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
 
   # Base packages
   home.packages = lib.unique (with pkgs; [
-    btop
-    lsd
-    jujutsu
-    tmux
-    fzf
-    zoxide
-    starship
-    lazygit
-    ripgrep
-    go
-    golangci-lint
-    golangci-lint-langserver
-    rustup
-    poppler
-    fd
-    jq
-    resvg
-    imagemagick
-    nodejs_24
-    unzip
-    sqlfluff
-
-    (pkgs.ffmpeg.override {
+    (ffmpeg.override {
       withNvenc = true;
     })
   ]);
@@ -70,9 +40,6 @@
   imports = [
     ./modules/yazi.nix
   ];
-
-  programs.nix-index.enable = true;
-  programs.home-manager.enable = true;
 
   home.activation.seedLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if [ ! -f "$HOME/.local/share/nvim/lazyvim.json" ]; then
