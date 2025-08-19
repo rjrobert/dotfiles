@@ -4,8 +4,12 @@
   home.stateVersion = "24.05"; # Use the latest stable version of home-manager
   home.username = "robert";
   home.homeDirectory = "/home/robert";
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "$HOME/.local/state/nix/profile/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
   home.sessionVariables = {
-    PATH = "$HOME/.nix-profile/bin:$HOME/.local/state/nix/profile/bin:/nix/var/nix/profiles/default/bin:$PATH";
     EDITOR = "nvim";
   };
 
