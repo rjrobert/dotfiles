@@ -31,7 +31,7 @@
     imagemagick
     nodejs_24
     unzip
-    uv
+    sqlfluff
 
     (pkgs.ffmpeg.override {
       withNvenc = true;
