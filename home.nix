@@ -64,13 +64,19 @@
 
   };
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    loginShellInit = ''
+      set -gxp PATH $HOME/.nix-profile/bin $HOME/.local/state/nix/profile/bin /nix/var/nix/profiles/default/bin
+    '';
+  };
   programs.neovim.enable = true;
 
   imports = [
     ./modules/yazi.nix
   ];
 
+  programs.nix-index.enable = true;
   programs.home-manager.enable = true;
 
   home.activation.seedLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
