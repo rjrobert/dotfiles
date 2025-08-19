@@ -64,12 +64,7 @@
 
   };
 
-  programs.fish = {
-    enable = true;
-    loginShellInit = ''
-      set -gxp PATH $HOME/.nix-profile/bin $HOME/.local/state/nix/profile/bin /nix/var/nix/profiles/default/bin
-    '';
-  };
+  programs.fish.enable = true;
   programs.neovim.enable = true;
 
   imports = [

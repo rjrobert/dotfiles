@@ -10,6 +10,7 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 abbr --add ls lsd
 abbr --add ll lsd -lA
 
+set --global --export --prepend PATH $HOME/.nix-profile/bin $HOME/.local/state/nix/profile/bin /nix/var/nix/profiles/default/bin
 set --export --prepend PATH $HOME/.cargo/bin
 set --export --prepend PATH $HOME/.local/bin
 set --export --prepend PATH $HOME/.ghcup/bin
