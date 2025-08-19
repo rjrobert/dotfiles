@@ -39,6 +39,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    gcc
     fish
     neovim
     git
