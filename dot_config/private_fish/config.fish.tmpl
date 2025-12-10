@@ -2,13 +2,28 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+function fish_user_key_bindings
+    fish_default_key_bindings -M insert
+
+    # Then execute the vi-bindings so they take precedence when there's a conflict.
+    # Without --no-erase fish_vi_key_bindings will default to
+    # resetting all bindings.
+    # The argument specifies the initial mode (insert, "default" or visual).
+    fish_vi_key_bindings --no-erase insert
+end
+set -g fish_key_bindings fish_user_key_bindings
+
 function multicd
     echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
 end
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
-abbr --add ls lsd
-abbr --add ll lsd -lA
+alias ls="eza -lh --color=auto --group-directories-first"
+alias lsa="ls -a"
+abbr --add ll lsa
+alias lt="eza --tree --level=2 --long --icons --git"
+alias lta="lt -a"
+alias ff="fzf --preview 'bat --style=numbers --color=always --line-range {}'"
 
 set --export --prepend PATH $HOME/.cargo/bin
 set --export --prepend PATH $HOME/.local/bin
@@ -21,7 +36,7 @@ set --export EDITOR /opt/homebrew/bin/nvim
 set --export --prepend PATH /usr/local/go/bin
 set --export EDITOR /usr/bin/nvim
 
-alias bat="batcat"
+#alias bat="batcat"
 {{ else }}
 set --export EDITOR "code --wait"
 {{ end }}
@@ -30,3 +45,9 @@ alias vim="nvim"
 
 fzf --fish | source
 zoxide init fish | source
+
+function starship_transient_prompt_func
+    starship module character
+end
+starship init fish | source
+enable_transience
