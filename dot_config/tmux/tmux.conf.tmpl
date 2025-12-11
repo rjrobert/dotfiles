@@ -34,3 +34,7 @@ set -g @tmux2k-window-list-compact true
 
 run '~/.tmux/plugins/tpm/tpm'
 # end plugins
+
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "ucore") }}
+set-option -g default-shell /usr/bin/fish
+{{ end }}
