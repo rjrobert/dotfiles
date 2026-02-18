@@ -5,8 +5,8 @@ set -g pane-base-index 1
 set-window-option -g pane-base-index 1
 set-option -g renumber-windows on
 
-set -g default-terminal "xterm-256color"
-set -ga terminal-overrides ",xterm-*:Tc"
+#set -g default-terminal "xterm-256color"
+#set -ga terminal-overrides ",xterm-*:Tc"
 
 # split pans using | and -
 bind-key "|" split-window -h -c "#{pane_current_path}"
