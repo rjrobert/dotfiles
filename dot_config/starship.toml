@@ -1,3 +1,13 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = "$os$all"
+
+[os]
+disabled = false
+
+[username]
+format = '[$user]($style)'
+
 [aws]
 symbol = "  "
 
@@ -71,7 +81,8 @@ symbol = " "
 symbol = " "
 
 [hostname]
-ssh_symbol = " "
+ssh_symbol = ""
+format = '@[$hostname $ssh_symbol]($style) in '
 
 [java]
 symbol = " "
@@ -188,3 +199,4 @@ symbol = " "
 
 [gradle]
 symbol = " "
+
