@@ -1,6 +1,16 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = "$os$all"
+format = """
+${env_var.ZMX_SESSION}\
+$os$all
+"""
+# format = "$os$all"
+
+[env_var.ZMX_SESSION]
+symbol = " "
+format = "[$symbol$env_value]($style) "
+description = "zmx session name"
+style = "bold bright-cyan"
 
 [os]
 disabled = false
@@ -199,4 +209,3 @@ symbol = " "
 
 [gradle]
 symbol = " "
-
