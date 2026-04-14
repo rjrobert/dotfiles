@@ -23,11 +23,11 @@ path add "~/.local/bin"
 path add "~/go/bin"
 
 $env.config.buffer_editor = "hx"
+$env.config.show_banner = false
 {{- if eq .chezmoi.os "darwin" }}
 $env.HOMEBREW_NO_ENV_HINTS = 1
 $env.EDITOR = "/opt/homebrew/bin/nvim"
 {{- else if eq .chezmoi.os "freebsd" }}
-$env.config.show_banner = false
 
 alias bastille = sudo bastille
 alias j = bastille
@@ -35,7 +35,7 @@ alias pkg = sudo pkg
 alias sysrc = sudo sysrc
 alias service = sudo service
 alias pfctl = sudo pfctl
-{{ end }}
+{{- end }}
 
 const NU_PLUGIN_DIRS = [
   ($nu.current-exe | path dirname )
@@ -43,5 +43,12 @@ const NU_PLUGIN_DIRS = [
 ]
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
+if (which starship | is-not-empty) {
+  starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+}
+if (which zoxide | is-not-empty) {
+  zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
+}
+if (which carapace | is-not-empty) {
+  carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
+}
